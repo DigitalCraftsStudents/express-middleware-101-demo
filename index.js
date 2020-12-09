@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
     res.send(`
 <html>
     <head>
-        <link rel="stylesheet" href="/styles.css">
+        <link rel="stylesheet" href="/stylesheets/styles.css">
     </head>
     <body>
         <h1>this should be red. you're welcome</h1>
