@@ -19,6 +19,11 @@ app.use('/blah', (req, res, next) => {
     // hand off to the next function in the pancake stack
     next();
 });
+
+// With middleware, it does a "fuzzy" match
+// on the URL path (that is, matches beginning of
+// URL path)
+// Another term is "regular expressions" or regex
 app.use('/', (req, res, next) => {
     // A piece of middleware can modify the req and/or res
     req.stuff = '💥';
@@ -35,13 +40,22 @@ app.use('/', (req, res, next) => {
     */
     next();
 });
-
+app.use(express.static('public'));
 // In express EVERYTHING is middleware.
 
 // app.VERB(PATH) <- express matches both
 app.get('/', (req, res) => {
     console.log('Here is your stuff: ', req.stuff);
-    res.send("Hello Y'all");
+    res.send(`
+<html>
+    <head>
+        <link rel="stylesheet" href="/styles.css">
+    </head>
+    <body>
+        <h1>this should be red. you're welcome</h1>
+    </body>
+</html>    
+    `);
 });
 
 app.get('/blah', (req, res) => {
